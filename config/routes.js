@@ -11,7 +11,6 @@ var config = require('./config');
  */
 
 module.exports = function(app, passport) {
-
   app.post('/call', function(req, res) {
     var srcNum = req.body.src;
     var dstNum = req.body.dst;

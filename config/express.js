@@ -8,10 +8,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 
-// serving html
-var swig = require('swig');
-var serveStatic = require('serve-static');
-
 // db
 var mongoStore = require('connect-mongo')(session);
 
@@ -21,16 +17,6 @@ var env = process.env.NODE_ENV || 'development';
 
 
 module.exports = function(app, passport) {
-  // Swig templating engine settings
-  // if (env === 'development' || env === 'test') {
-  //   swig.setDefaults({
-  //     cache: false
-  //   });
-  // }
-  // set views path, template engine and default layout
-  // app.engine('html', swig.renderFile)
-  // app.set('views', config.root + '/app/views');
-  // app.set('view engine', 'html');
 
   // allow CORS
   app.use(cors());
