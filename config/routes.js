@@ -45,12 +45,4 @@ module.exports = function(app, passport) {
     res.send(200, xmlRes);
   });
 
-  /**
-   * Error handling
-   */
-
-
-
-  // assume 404 since no middleware responded
- 
 };

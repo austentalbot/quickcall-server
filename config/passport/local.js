@@ -21,7 +21,7 @@ module.exports = new LocalStrategy({
       criteria: { email: email }
     };
     User.load(options, function (err, user) {
-      if (err) return done(err)
+      if (err) return done(err);
       if (!user) {
         return done(null, false, { message: 'Unknown user' });
       }

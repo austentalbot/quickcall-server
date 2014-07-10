@@ -24,9 +24,9 @@ var port = process.env.PORT || 3000;
 // mongoose.connection.on('disconnected', connect);
 
 // Bootstrap models
-fs.readdirSync(__dirname + '/app/models').forEach(function (file) {
-  if (~file.indexOf('.js')) require(__dirname + '/app/models/' + file);
-});
+// fs.readdirSync(__dirname + '/app/models').forEach(function (file) {
+//   if (~file.indexOf('.js')) require(__dirname + '/app/models/' + file);
+// });
 
 // Bootstrap passport config
 // require('./config/passport')(passport, config);
