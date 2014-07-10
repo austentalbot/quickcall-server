@@ -13,7 +13,12 @@ module.exports = {
     
   },
   plivo: {
+<<<<<<< HEAD
       "authId": "MAZDFKYJA1OTU2M2NKMG",
       "authToken": "YzA0ZWJkOGJlYzQyNGMyMWEyMmRmODdkYTcyM2Rl"
+=======
+    "authId": process.env.plivo_auth_id,
+    "authToken": process.env.plivo_auth_token
+>>>>>>> set up the heroku deployable
   }
 };
