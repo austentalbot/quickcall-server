@@ -3,6 +3,7 @@
  * Module dependencies
  */
 
+console.log(process.env.plivo_auth_id);
 var fs = require('fs');
 var express = require('express');
 var passport = require('passport');
