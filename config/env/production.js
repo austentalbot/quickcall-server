@@ -25,7 +25,7 @@ module.exports = {
     ]
   },
   plivo: {
-    "authId": process.env.auth_id,
-    "authToken": process.env.auth_token
+    "authId": process.env.plivo_auth_id,
+    "authToken": process.env.plivo_auth_token
   }
 };
