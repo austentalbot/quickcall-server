@@ -3,7 +3,6 @@
  */
 
 var mongoose = require('mongoose');
-var home = require('home');
 var plivo = require('plivo');
 var config = require('./config');
 
@@ -12,9 +11,6 @@ var config = require('./config');
  */
 
 module.exports = function(app, passport) {
-
-
-  app.get('/', home.index);
 
   app.post('/call', function(req, res) {
     var srcNum = req.body.src;
@@ -53,23 +49,8 @@ module.exports = function(app, passport) {
    * Error handling
    */
 
-  app.use(function(err, req, res, next) {
-    // treat as 404
-    if (err.message && (~err.message.indexOf('not found') || (~err.message.indexOf('Cast to ObjectId failed')))) {
-      return next();
-    }
-    console.error(err.stack);
-    // error page
-    res.status(500).render('500', {
-      error: err.stack
-    });
-  });
+
 
   // assume 404 since no middleware responded
-  app.use(function(req, res, next) {
-    res.status(404).render('404', {
-      url: req.originalUrl,
-      error: 'Not found'
-    });
-  });
+ 
 };
