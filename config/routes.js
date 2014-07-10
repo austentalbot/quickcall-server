@@ -3,7 +3,6 @@
  */
 
 var mongoose = require('mongoose');
-var home = require('home');
 var plivo = require('plivo');
 var config = require('./config');
 
@@ -12,8 +11,6 @@ var config = require('./config');
  */
 
 module.exports = function(app, passport) {
-
-  // app.get('/', home.index);
 
   app.post('/call', function(req, res) {
     var srcNum = req.body.src;
@@ -48,5 +45,4 @@ module.exports = function(app, passport) {
     res.send(200, xmlRes);
   });
 
-  
 };
