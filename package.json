@@ -10,7 +10,7 @@
     "node": "0.10.x"
   },
   "scripts": {
-    "start": "NODE_PATH=./config:~/.zshrc NODE_ENV=development nodemon server.js",
+    "start": "NODE_PATH=./config NODE_ENV=development nodemon server.js",
     "test": "make test"
   },
   "dependencies": {
