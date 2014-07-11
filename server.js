@@ -28,13 +28,13 @@ var port = process.env.PORT || 3000;
 // });
 
 // Bootstrap passport config
-require('./config/passport')(passport, config);
+require('./utility/passport')(passport, config);
 
 // Bootstrap application settings
-require('./config/express')(app, passport);
+require('./utility/express')(app, passport);
 
 // Bootstrap routes
-require('./config/routes')(app, passport);
+require('./utility/routes')(app, passport);
 
 app.listen(port);
 console.log('Express app started on port ' + port);

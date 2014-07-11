@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
-var User = mongoose.model('User');
-
-var google = require('./passport/google');
+// var User = mongoose.model('User');
+var google = require('./passport-google');
 
 module.exports = function (passport, config) {
   passport.serializeUser(function(user, done) {
