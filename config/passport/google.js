@@ -1,7 +1,6 @@
-var mongoose = require('mongoose');
-var GoogleStrategy = require('passport-google').Strategy;
+var GoogleStrategy = require('passport-google-oauth').Strategy;
 var config = require('config');
-var User = mongoose.model('User');
+var User = require('../../users/user.js');
 
 module.exports = new GoogleStrategy({
     clientID: config.google.clientID,
@@ -9,21 +8,17 @@ module.exports = new GoogleStrategy({
     callbackURL: config.google.callbackURL
   },
   function(accessToken, refreshToken, profile, done) {
-    User.findOne({
-      'username': profile.id
-    }, function(err, oldUser) {
+    User.findOne({'username': profile.id}, function(err, oldUser) {
       if (oldUser) {
-        return done(null, user);
-      } else {
-        
+        return done(null, oldUser);
+      } else {        
         var newUser = new User({
-          name: profile.displayName,
-          username: profile.username
+          username: profile.id,
+          token: profile.id
         });
         newUser.save(function(err) {
           if (err) {
-            console.log(err, false);
-            throw err;
+            done(err);
           }
           return done(null, user);
         });
