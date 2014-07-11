@@ -1,13 +1,9 @@
-/**
- * Expose
- */
-
 module.exports = {
   db: 'mongodb://localhost/your_project_development',
   google: {
-    clientID: process.env.google_client_id,
-    clientSecret: process.env.google_client_secret,
-    callbackURL: 'http://quickcall-server.herokuapp.com/auth/google/callback',
+    consumerKey: process.env.google_client_id,
+    consumerSecret: process.env.google_client_secret,
+    callbackURL: process.env.google_callback,
     scope: [
       'https://www.googleapis.com/auth/userinfo.profile',
       'https://www.googleapis.com/auth/userinfo.email'
