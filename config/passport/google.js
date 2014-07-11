@@ -10,14 +10,14 @@ module.exports = new GoogleStrategy({
   },
   function(accessToken, refreshToken, profile, done) {
     User.findOne({
-      'google.id': profile.id
+      'username': profile.id
     }, function(err, oldUser) {
       if (oldUser) {
         return done(null, user);
       } else {
+        
         var newUser = new User({
           name: profile.displayName,
-          email: profile.email[0].value,
           username: profile.username
         });
         newUser.save(function(err) {
