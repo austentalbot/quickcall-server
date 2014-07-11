@@ -23,7 +23,6 @@ module.exports = function(app, passport) {
   }));
 
   app.use(cookieParser());
-  // express/mongo session storage
   app.use(session({
     secret: 'stuff',
     store: new mongoStore({
