@@ -1,3 +1,3 @@
 node_modules/
-config/env/development/
-config/env/test/
+config/env/development.js
+config/env/test.js

@@ -1,12 +1,8 @@
 var mongoose = require('mongoose');
-
 var GoogleStrategy = require('passport-google-oauth').Strategy;
 var User = require('../users/user.js');
 var config = require('../config/config');
 
-
-// var User = mongoose.model('User');
-// NEED TO LOAD SIGNUPUSER METHOD 
 
 module.exports = new GoogleStrategy({
     consumerKey: config.google.consumerKey,
@@ -15,20 +11,20 @@ module.exports = new GoogleStrategy({
   },
   function(accessToken, refreshToken, profile, done) {
     User.findOne({'username': profile.id}, function(err, oldUser) {
+      if(err){
+        return err;
+      }
       if (oldUser) {
         return done(null, oldUser);
       } else {        
-
-
         var newUser = new User({
           username: profile.id,
-          token: profile.id
         });
-        newUser.save(function(err) {
+        newUser.save(function(err,user) {
           if (err) {
             done(err);
           }
-          return done(null, user);
+          return done(null, user.username);
         });
       }
     });
