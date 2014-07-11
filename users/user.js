@@ -1,62 +1,23 @@
-
-/*!
- * Module dependencies
- */
-
 var mongoose = require('mongoose');
 var userPlugin = require('mongoose-user');
-var bcrypt = require('bcrypt');
 var Schema = mongoose.Schema;
 
-/**
- * User schema
- */
-var UserSchema = new Schema({
-  username: { type: String, required: true, unique: true},
-  phone: { type: Number, required: true, unique: true}
-  // preferences: {}
-});
-
-/**
- * User plugin
- */
-
-UserSchema.plugin(userPlugin, {});
-
-/**
- * Add your
- * - pre-save hooks
- * - validations
- * - virtuals
- */
-
-/**
- * Methods
- */
 
 UserSchema.method({
-
+  google: {
+    username: {
+      required: true,
+      type: String
+    },
+    token: String
+  },
+  phoneNumber: String
 });
 
-/**
- * Statics
- */
-
-UserSchema.static({
-
-});
-
-
-mongoose.model('User', UserSchema);
-
-
-exports.login = function(req, res){
-
-
+UserSchema.statics.findUserByPhoneNumber = function (number) {
+  var User = mongoose.model('User');
+  User.findOne({phoneNumber: number}, function (err, user) {
+  });
 };
 
-
-exports.signup = function(req, res){
-
-
-};
+module.exports = mongoose.model('User', UserSchema);
