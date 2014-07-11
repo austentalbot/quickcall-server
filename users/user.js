@@ -2,22 +2,31 @@ var mongoose = require('mongoose');
 var userPlugin = require('mongoose-user');
 var Schema = mongoose.Schema;
 
-
-UserSchema.method({
-  google: {
+var UserSchema = new Schema({ 
     username: {
-      required: true,
+      required: true, 
       type: String
     },
-    token: String
-  },
-  phoneNumber: String
+    token: String,
+    phoneNumber: String
+   // ,preferences: {}
 });
 
-UserSchema.statics.findUserByPhoneNumber = function (number) {
-  var User = mongoose.model('User');
-  User.findOne({phoneNumber: number}, function (err, user) {
-  });
-};
+// UserSchema.method({
+//   google: {
+//     username: {
+//       required: true,
+//       type: String
+//     },
+//     token: String
+//   },
+//   phoneNumber: String
+// });
+
+// UserSchema.statics.findUserByPhoneNumber = function (number) {
+//   var User = mongoose.model('User');
+//   User.findOne({phoneNumber: number}, function (err, user) {
+//   });
+// };
 
 module.exports = mongoose.model('User', UserSchema);

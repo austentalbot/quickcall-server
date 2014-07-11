@@ -22,13 +22,12 @@ module.exports = new GoogleStrategy({
 
         var newUser = new User({
           username: profile.id,
-          token: profile.id
         });
         newUser.save(function(err) {
           if (err) {
             done(err);
           }
-          return done(null, user);
+          return done(null, newUser.username);
         });
       }
     });
