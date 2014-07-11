@@ -11,12 +11,10 @@ var Schema = mongoose.Schema;
 /**
  * User schema
  */
-
 var UserSchema = new Schema({
   username: { type: String, required: true, unique: true},
-  email: { type: String, required: true, unique: true},
-  phone: { type: Number, required: true, unique: true},
-  hashed_password: { type: String, default: '' }
+  phone: { type: Number, required: true, unique: true}
+  // preferences: {}
 });
 
 /**
@@ -48,8 +46,17 @@ UserSchema.static({
 
 });
 
-/**
- * Register
- */
 
 mongoose.model('User', UserSchema);
+
+
+exports.login = function(req, res){
+
+
+};
+
+
+exports.signup = function(req, res){
+
+
+};
