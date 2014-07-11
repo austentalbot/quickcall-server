@@ -37,7 +37,7 @@ module.exports = function(app, passport) {
     res.send(200, xmlRes);
   });
 
-  app.post('/login', passport.redirect('google', {
+  app.post('/login', passport.authenticate('google', {
     failureRedirect: '/login',
     failureFlash: true
   }), function(req, res) {
