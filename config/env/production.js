@@ -3,25 +3,14 @@
  */
 
 module.exports = {
-  db: 'mongodb://localhost/your_project_production',
-  facebook: {
-    clientID: 'APP_ID',
-    clientSecret: 'SECRET',
-    callbackURL: 'http://localhost:3000/auth/facebook/callback',
-    scope: [
-      'email',
-      'user_about_me',
-      'user_friends'
-    ]
-  },
+  db: 'mongodb://localhost/your_project_development',
   google: {
-    clientID: 'APP_ID',
-    clientSecret: 'SECRET',
-    callbackURL: 'http://localhost:3000/auth/google/callback',
+    clientID: process.env.google_client_id,
+    clientSecret: process.env.google_client_secret,
+    callbackURL: 'http://quickcall-server.herokuapp.com/auth/google/callback',
     scope: [
       'https://www.googleapis.com/auth/userinfo.profile',
-      'https://www.googleapis.com/auth/userinfo.email',
-      'https://www.google.com/m8/feeds',
+      'https://www.googleapis.com/auth/userinfo.email'
     ]
   },
   plivo: {
