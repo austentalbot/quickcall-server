@@ -1,7 +1,3 @@
-/**
- * Module dependencies.
- */
-
 // session
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
@@ -18,19 +14,15 @@ var env = process.env.NODE_ENV || 'development';
 
 module.exports = function(app, passport) {
 
-  // allow CORS
+  // allow cross origin
   app.use(cors());
 
-  // cookieParser should be above session
-  app.use(cookieParser());
-
-  // bodyParser should be above methodOverride
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({
     extended: false
   }));
 
-
+  app.use(cookieParser());
   // express/mongo session storage
   // app.use(session({
   //   secret: pkg.name,
@@ -41,6 +33,6 @@ module.exports = function(app, passport) {
   // }));
 
   // use passport session
-  // app.use(passport.initialize());
-  // app.use(passport.session());
+  app.use(passport.initialize());
+  app.use(passport.session());
 };
