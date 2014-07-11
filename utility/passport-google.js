@@ -1,8 +1,12 @@
 var mongoose = require('mongoose');
 
 var GoogleStrategy = require('passport-google-oauth').Strategy;
-var config = require('config');
 var User = require('../../users/user.js');
+var config = require('../config/config');
+
+
+// var User = mongoose.model('User');
+// NEED TO LOAD SIGNUPUSER METHOD 
 
 module.exports = new GoogleStrategy({
     consumerKey: config.google.consumerKey,
@@ -14,6 +18,8 @@ module.exports = new GoogleStrategy({
       if (oldUser) {
         return done(null, oldUser);
       } else {        
+
+
         var newUser = new User({
           username: profile.id,
           token: profile.id
