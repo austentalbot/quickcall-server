@@ -26,7 +26,8 @@
     "connect-mongo": "latest",
     "mongoose-user": "latest",
     "plivo": "latest",
-    "cors": "latest"
+    "cors": "latest",
+    "mongodb": "~1.4.7"
   },
   "devDependencies": {
     "nodemon": "latest",
