@@ -9,7 +9,7 @@ module.exports = function(app, passport) {
   });
   
   app.post('/call', function(req, res) {
-   phone.initialCall(req, res);
+   phone.triggerCall(req, res);
   });
 
   app.post('/xml-response', function(req, res) {
