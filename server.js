@@ -19,28 +19,38 @@ var connect = function () {
 };
 connect();
 
+
 mongoose.connection.on('error', console.log);
 mongoose.connection.on('disconnected', connect);
 
+
+
+
+mongoose.connection.on('error', console.log);
+mongoose.connection.on('disconnected', connect);
 
 
 var Schema = mongoose.Schema;
 /**
  * User schema
  */
-var UserSchema = new Schema({
-  username: { type: String, required: true, unique: true},
-  phonenumber: { type: Number, required: true, unique: true}
-  // preferences: {}
-});
-var User = mongoose.model('User', UserSchema);
-new User({username:'test',phonenumber:'test'}).save(function(err,e){
-	if(err) {
-		return err;
-	}
-	return e;
-});
-User.find()
+// var UserSchema = new Schema({
+//   username: { type: String, required: true, unique: true},
+//   phonenumber: { type: Number, required: true, unique: true}
+//   // preferences: {}
+// });
+// var User = mongoose.model('User', UserSchema);
+// new User({username:'test',phonenumber:'test'}).save(function(err,e){
+// 	if(err) {
+
+// 		return err;
+
+// 		return error;
+
+// 	}
+// 	return e;
+// });
+// User.find()
 // Bootstrap models
 // fs.readdirSync(__dirname + '/app/models').forEach(function (file) {
   // if (~file.indexOf('.js')) require(__dirname + '/app/models/' + file);
