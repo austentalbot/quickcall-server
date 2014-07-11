@@ -1,14 +1,7 @@
-/**
- * Module dependencies.
- */
-
 var mongoose = require('mongoose');
 var plivo = require('plivo');
 var config = require('./config');
 
-/**
- * Expose
- */
 
 module.exports = function(app, passport) {
   app.post('/call', function(req, res) {
@@ -44,4 +37,18 @@ module.exports = function(app, passport) {
     res.send(200, xmlRes);
   });
 
+  app.post('/login', passport.authenticate('google', {
+    failureRedirect: '/login',
+    failureFlash: true
+  }), function(req, res) {
+    res.redirect('/');
+  });
+
+  // app.get('/auth/google', passport.authenticate('google'));
+  
+  app.post('/auth/google/callback', passport.authenticate('google', {
+    failureRedirect: '/login'
+  }), function(req, res) {
+    res.redirect('/');
+  });
 };

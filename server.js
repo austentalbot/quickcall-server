@@ -2,7 +2,6 @@
 /**
  * Module dependencies
  */
-
 var fs = require('fs');
 var express = require('express');
 var passport = require('passport');
@@ -29,7 +28,7 @@ var port = process.env.PORT || 3000;
 // });
 
 // Bootstrap passport config
-// require('./config/passport')(passport, config);
+require('./config/passport')(passport, config);
 
 // Bootstrap application settings
 require('./config/express')(app, passport);
