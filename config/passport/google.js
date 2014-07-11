@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+var mongoose = require('mongoose');
+>>>>>>> db386c7dba2acb4b98c8ea30637f1cca82686f75
 var GoogleStrategy = require('passport-google-oauth').Strategy;
 var config = require('config');
 var User = require('../../users/user.js');
