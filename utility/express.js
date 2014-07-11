@@ -23,14 +23,13 @@ module.exports = function(app, passport) {
   }));
 
   app.use(cookieParser());
-  // express/mongo session storage
-  // app.use(session({
-  //   secret: pkg.name,
-  //   store: new mongoStore({
-  //     url: config.db,
-  //     collection: 'sessions'
-  //   })
-  // }));
+  app.use(session({
+    secret: 'stuff',
+    store: new mongoStore({
+      url: config.db,
+      collection: 'sessions'
+    })
+  }));
 
   // use passport session
   app.use(passport.initialize());
