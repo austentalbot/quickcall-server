@@ -7,8 +7,8 @@ var UserSchema = new Schema({
       required: true, 
       type: String
     },
-    token: String,
-    phoneNumber: String
+    phonenumber: String
+
    // ,preferences: {}
 });
 
