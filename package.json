@@ -20,7 +20,7 @@
     "body-parser": "latest",
     "mongoose": "latest",
     "passport": "latest",
-    "passport-local": "latest",
+    "passport-google-oauth": "latest",
     "async": "latest",
     "forever": "latest",
     "connect-mongo": "latest",
