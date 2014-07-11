@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var plivo = require('plivo');
-var config = require('./config');
+var config = require('config');
 
 
 module.exports = function(app, passport) {

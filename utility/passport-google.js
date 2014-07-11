@@ -1,11 +1,11 @@
 var mongoose = require('mongoose');
-var GoogleStrategy = require('passport-google').Strategy;
-var config = require('config');
-var User = mongoose.model('User');
+var GoogleStrategy = require('passport-google-oauth').Strategy;
+var config = require('../config/config');
+// var User = mongoose.model('User');
 
 module.exports = new GoogleStrategy({
-    clientID: config.google.clientID,
-    clientSecret: config.google.clientSecret,
+    consumerKey: config.google.consumerKey,
+    consumerSecret: config.google.consumerSecret,
     callbackURL: config.google.callbackURL
   },
   function(accessToken, refreshToken, profile, done) {

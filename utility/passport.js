@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var User = mongoose.model('User');
+// var User = mongoose.model('User');
 var google = require('./passport-google');
 
 module.exports = function (passport, config) {
