@@ -5,8 +5,9 @@ var User = require('../QCDB/user.js');
 
 module.exports = function(app, passport, User) {
   app.get('/', function(req,res){
-    res.send('Home');
+    res.send('hello world');
   });
+  
   app.post('/call', function(req, res) {
    phone.initialCall(req, res);
   });
@@ -45,4 +46,8 @@ module.exports = function(app, passport, User) {
     });
     res.redirect('/');
   });
+  app.get('/auth/google', passport.authenticate('google',{scope:'https://www.googleapis.com/auth/userinfo.profile'}));
+  
+  app.get('/auth/google/callback', passport.authenticate('google', {
+    successRedirect:'/',failureRedirect: '/login'}));
 };
