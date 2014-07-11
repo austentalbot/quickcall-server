@@ -6,7 +6,7 @@ var fs = require('fs');
 var express = require('express');
 var passport = require('passport');
 var config = require('config');
-// var mongoose = require('mongoose');
+var mongoose = require('mongoose');
 
 var app = express();
 
@@ -34,12 +34,6 @@ var UserSchema = new Schema({
   // preferences: {}
 });
 var User = mongoose.model('User', UserSchema);
-new User({username:'test',phonenumber:'test'}).save(function(err,e){
-	if(err) {
-		return error;
-	}
-	return e;
-});
 User.find()
 // Bootstrap models
 // fs.readdirSync(__dirname + '/app/models').forEach(function (file) {
