@@ -3,8 +3,8 @@ module.exports = {
         process.env.MONGOHQ_URL ||
         'mongodb://localhost/quickcall',
     google: {
-        clientID: '267057860316-qjdth18861rb2h8j4pnsupv03pipjagq.apps.googleusercontent.com',
-        clientSecret: 'd1SHrhiP_-jS1SITy46gwK5t',
+        consumerKey: '267057860316-qjdth18861rb2h8j4pnsupv03pipjagq.apps.googleusercontent.com',
+        consumerSecret: 'd1SHrhiP_-jS1SITy46gwK5t',
         callbackURL: 'http://quickcall-server.herokuapp.com/auth/google/callback',
         scope: [
             'https://www.googleapis.com/auth/userinfo.profile',

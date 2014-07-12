@@ -1,4 +1,5 @@
 var plivo = require('plivo');
+var config = require('config');
 
 exports.callSrcNum = function(req, res){
 	// ask plivo to call the app user
