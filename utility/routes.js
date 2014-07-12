@@ -9,11 +9,11 @@ module.exports = function(app, passport) {
   });
   
   app.post('/call', function(req, res) {
-   phone.triggerCall(req, res);
+   phone.callSrcNum(req, res);
   });
 
   app.post('/xml-response', function(req, res) {
-   phone.connectCall(req, res);
+   phone.callDstNum(req, res);
   });
 
   app.post('/login', passport.authenticate('google', {
