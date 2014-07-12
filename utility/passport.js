@@ -8,17 +8,16 @@ module.exports = function (passport, config) {
   });
 
 
-// passport.deserializeUser(function(id, done) {
-//   User.findById(id, function(err, user) {
-//     done(err, user);
-//   });
-// });
-
   passport.deserializeUser(function(id, done) {
     User.findOne({ username: id }, function (err, user) {
       done(err, user);
     });
   });
 
+// passport.deserializeUser(function(id, done) {
+//   User.findById(id, function(err, user) {
+//     done(err, user);
+//   });
+// });
   passport.use(google);
 };
