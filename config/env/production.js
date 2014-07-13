@@ -5,8 +5,7 @@ module.exports = {
     consumerSecret: process.env.google_client_secret,
     callbackURL: process.env.google_callback,
     scope: [
-      'https://www.googleapis.com/auth/userinfo.profile',
-      'https://www.googleapis.com/auth/userinfo.email'
+      'https://www.googleapis.com/oauth2/v1/userinfo'
     ]
   },
   plivo: {
