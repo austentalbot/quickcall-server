@@ -10,6 +10,7 @@ module.exports = {
       'https://www.googleapis.com/auth/userinfo.profile',
       'https://www.googleapis.com/auth/userinfo.email'
     ]
+    
   },
   plivo: {
       "authId": "MAZDFKYJA1OTU2M2NKMG",
