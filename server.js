@@ -32,7 +32,7 @@ passport.use(new GoogleStrategy({
   ]
   },
   function(accessToken, refreshToken, profile, done) {
-  	console.log(profile.id,'just logged in...')
+  	console.log(profile.id,'just logged in...');
     process.nextTick(function () {
       User.findOne({'username': profile.id},function(err,oldUser){
         if(err){
@@ -74,20 +74,19 @@ app.get('/', function(req, res){
 app.get('/auth/google',
   passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/userinfo.profile',
                                             'https://www.googleapis.com/auth/userinfo.email'] }),
+  //generic response function to google don't delete!
   function(req, res){});
 
-// Bootstrap passport config
-app.get('/auth/google/callback', 
-  passport.authenticate('google', { failureRedirect: '/login' }),
-  function(req, res) {
-    res.redirect('/');
-  });
-
-// Bootstrap application settings
-// require('./utility/express')(app, passport);
-
-// // Bootstrap routes
-// require('./utility/routes')(app, passport);
-
+app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/login' }),
+function(req, res) {
+  res.redirect('/');
+});
+       /////////////////////////////////////////////////////
+      //  //  leave commented out until refactor           
+     // // Bootstrap application settings                  
+    // require('./utility/express')(app, passport);    
+   // 											      
+  // // Bootstrap routes						     
+ // require('./utility/routes')(app, passport);     
 app.listen(port);
-console.error('listening on',port)
+console.error('listening on',port);
