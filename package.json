@@ -1,43 +1,35 @@
 {
-  "name": "node-express-mongoose",
-  "description": "A boilerplate application for express mongoose",
-  "version": "1.0.0",
+  "name": "quickCall",
+  "description": "dialer that lets you make a call really quickly",
+  "version": "1.0.1",
   "author": {
-    "name": "Madhusudhan Srinivasa",
-    "email": "me@madhums.me"
+    "name": "dh lee",
+    "email": "dh@dhfromkorea.com"
   },
   "engines": {
     "node": "0.10.x"
   },
   "scripts": {
-    "start": "NODE_PATH=./config:./app/controllers NODE_ENV=development ./node_modules/.bin/nodemon server.js",
+    "start": "NODE_PATH=./config NODE_ENV=development nodemon server.js",
     "test": "make test"
   },
   "dependencies": {
     "express": "latest",
     "express-session": "latest",
-    "compression": "latest",
     "cookie-parser": "latest",
-    "morgan": "latest",
     "body-parser": "latest",
-    "method-override": "latest",
-    "csurf": "latest",
-    "serve-static": "latest",
     "mongoose": "latest",
-    "swig": "latest",
     "passport": "latest",
-    "passport-local": "latest",
-    "winston": "latest",
-    "view-helpers": "latest",
+    "passport-google-oauth": "latest",
     "async": "latest",
     "forever": "latest",
     "connect-mongo": "latest",
-    "connect-flash": "latest",
     "mongoose-user": "latest",
     "plivo": "latest",
     "cors": "latest"
   },
   "devDependencies": {
+    "nodemon": "latest",
     "ngrok": "latest",
     "mocha": "latest",
     "should": "latest",
@@ -45,10 +37,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/madhums/node-express-mongoose.git"
+    "url": "git://github.com/quickcall/quickcall-server.git"
   },
   "keywords": [
-    "mvc",
-    "boilerplate"
+    "voice",
+    "dialer"
   ]
 }
