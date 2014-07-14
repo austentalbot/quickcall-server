@@ -5,7 +5,7 @@ var config = require('config');
 
 module.exports = function(app, passport, User) {
   app.get('/', function(req,res){
-    res.send('hello world');
+    res.send('Home');
   });
   app.post('/call', function(req, res) {
    phone.initialCall(req, res);
