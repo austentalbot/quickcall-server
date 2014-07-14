@@ -2,8 +2,12 @@ var mongoose = require('mongoose');
 var userPlugin = require('mongoose-user');
 var Schema = mongoose.Schema;
 
-var UserSchema = new Schema({ 
-    username: {
+var ContactsSchema = new Schema({ 
+    associatedUser:{
+      required:true,
+      type:String
+    },
+    name: {
       required: true, 
       type: String,
       unique: true
@@ -12,9 +16,12 @@ var UserSchema = new Schema({
     	sparse: true,
     	type: String,
     	unique:false
+    },
+    description:{
+      sparse:true,
+      type:String,
+      unique:false
     }
-    // ,
-    // preferences: {}
 });
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('Contacts', UserSchema);

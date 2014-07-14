@@ -1,25 +1,15 @@
-// var mongoose = require('mongoose');
-// var User = require('../users/user.js');
-// var google = require('./passport-google');
+var passport = require('passport');
+var google = require('./passport-google');
 
-// module.exports = function (passport, config) {
-//   passport.serializeUser(function(user, done) {
-//     done(null, user.id);
-//   });
-
-
-// // passport.deserializeUser(function(id, done) {
-// //   User.findById(id, function(err, user) {
-// //     done(err, user);
-// //   });
-// // });
-
-//   passport.deserializeUser(function(id, done) {
-//     User.findOne({ username: id }, function (err, user) {
-//       if(err){console.log(err);}
-//       done(err, user);
-//     });
-//   });
-
-//   passport.use(google);
-// };
+//these methods are here to support persistent login storage
+//in later refactors user.id should be stored in database
+module.exports = function(){
+  passport.serializeUser(function(user, done) {
+    done(null, user);
+  });
+  //obj should also refer to said user in database
+  passport.deserializeUser(function(obj, done) {
+    done(null, obj);
+  });
+  passport.use(google);
+};
