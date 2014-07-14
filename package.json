@@ -3,7 +3,7 @@
   "description": "dialer that lets you make a call really quickly",
   "version": "1.0.1",
   "author": {
-    "name": "dh lee",
+    "name": "quickCall Team",
     "email": "dh@dhfromkorea.com"
   },
   "engines": {
@@ -14,19 +14,17 @@
     "test": "make test"
   },
   "dependencies": {
-    "express": "latest",
-    "express-session": "latest",
-    "cookie-parser": "latest",
+    "async": "latest",
     "body-parser": "latest",
+    "cookie-parser": "latest",
+    "cors": "latest",
+    "express": "latest",
+    "forever": "latest",
+    "lodash": "^2.4.1",
     "mongoose": "latest",
     "passport": "latest",
     "passport-google-oauth": "latest",
-    "async": "latest",
-    "forever": "latest",
-    "connect-mongo": "latest",
-    "mongoose-user": "latest",
-    "plivo": "latest",
-    "cors": "latest"
+    "plivo": "latest"
   },
   "devDependencies": {
     "nodemon": "latest",

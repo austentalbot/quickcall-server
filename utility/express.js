@@ -1,15 +1,14 @@
-// var session = require('express-session');
-// var cookieParser = require('cookie-parser');
-// var bodyParser = require('body-parser');
-// var cors = require('cors');
-// var mongoStore = require('connect-mongo')(session);
-// var config = require('config');
+
+
+
+
+
 // var env = process.env.NODE_ENV || 'development';
 
 
-// module.exports = function(app, passport) {
 
-//   // allow cross origin
+
+
 //   app.use(cors());
 
 //   app.use(bodyParser.json());
