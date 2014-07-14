@@ -17,7 +17,11 @@ module.exports = new GoogleStrategy({
   ]
   },
   function(accessToken, refreshToken, profile, done) {
-    console.log(profile.id,'just logged in...');
+    var fullName = profile._json.name;
+    var id = profile.id;
+    var picture = profile._json.picture;
+    console.log(fullName,'just logged in...');
+    console.log(profile._json.name);
     process.nextTick(function () {
       User.findOne({'username': profile.id},function(err,oldUser){
         if(err){
@@ -28,7 +32,9 @@ module.exports = new GoogleStrategy({
         }
         else{
           var newUser = new User({
-            username: profile.id
+            username: id,
+            fullName: fullName,
+            picture: picture
           });
           newUser.save(function(err,user){
             if(err){

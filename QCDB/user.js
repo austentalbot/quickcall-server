@@ -10,10 +10,16 @@ var UserSchema = new Schema({
     },
     phonenumber: {
     	sparse: true,
-    	type: String,
-    	unique:false
+    	type: String
+    },
+    fullName: {
+      sparse: true,
+      type: String
+    },
+    picture: {
+      sparse: true,
+      type: String
     }
-    // ,
     // preferences: {}
 });
 
