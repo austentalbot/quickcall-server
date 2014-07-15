@@ -1,6 +1,6 @@
 {
   "name": "quickCall",
-  "description": "dialer that lets you make a call really quickly",
+  "description": "Mobile VOIP application made with Ionic",
   "version": "1.0.1",
   "author": {
     "name": "quickCall Team",
@@ -20,7 +20,6 @@
     "cors": "latest",
     "express": "latest",
     "forever": "latest",
-    "lodash": "^2.4.1",
     "mongoose": "latest",
     "passport": "latest",
     "passport-google-oauth": "latest",

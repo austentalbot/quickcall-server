@@ -1,11 +1,12 @@
 var mongoose = require('mongoose');
 var phone = require('./call');
 var config = require('config');
+var User = require('../QCDB/user.js');
 
 
 module.exports = function(app, passport, User) {
   app.get('/', function(req,res){
-    res.send('hello world');
+    res.send('Home');
   });
   app.post('/call', function(req, res) {
    phone.initialCall(req, res);
@@ -30,6 +31,20 @@ module.exports = function(app, passport, User) {
     res.redirect('/');
   });
 
+app.get('/test',function(req,res){
+  var userQuery = {username: req.user.id};
+  var contact = {user:'myFriend',phonenumber:'dummynumber',image:'some.img'};
+  User.update(userQuery,{$pushAll:{contacts:contact}
+},
+    function(err,res){
+      if(err){
+        console.log(err);
+      }
+      console.log(res);
+  });
+  res.redirect('/');
+});
+
   app.post('/enternumber',function(req,res){
     //get current users token and query it
     var userQuery = {username: req.user.id};
@@ -40,7 +55,6 @@ module.exports = function(app, passport, User) {
       if(err){
         return err;
       }
-      console.log(userInfo,'added phonenumber');
     });
     res.redirect('/');
   });
