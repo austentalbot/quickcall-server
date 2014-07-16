@@ -2,14 +2,14 @@ var express = require('express');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var User = require('./QCDB/user.js');
+var Contacts = require('./QCDB/contacts.js');
+
 
 var app = express();
 
 var port = process.env.PORT || 3000;
 
 var connect = function () {
-  //not sure what this does(part of boiler plate), keep it commented out!
-  // var options = { server: { socketOptions: { keepAlive: 1 } } };
   mongoose.connect('mongodb://localhost/quickcall');
 };
 
