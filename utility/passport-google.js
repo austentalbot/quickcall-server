@@ -18,6 +18,7 @@ module.exports = new GoogleStrategy({
   ]
   },
   function(accessToken, refreshToken, profile, done) {
+<<<<<<< HEAD
     var fullName = profile._json.name;
     var id = profile.id;
     var picture = profile._json.picture;
@@ -47,5 +48,26 @@ module.exports = new GoogleStrategy({
       });
       return done(null, profile);
     });
+=======
+    done(err, profile);
+    // User.findOne({'username': profile.id}, function(err, oldUser) {
+    //   if(err){
+    //     return err;
+    //   }
+    //   if (oldUser) {
+    //     return done(null, oldUser);
+    //   } else {        
+    //     var newUser = new User({
+    //       username: profile.id,
+    //     });
+    //     newUser.save(function(err,user) {
+    //       if (err) {
+    //         done(err);
+    //       }
+    //       return done(null, user.username);
+    //     });
+    //   }
+    // });
+>>>>>>> setup before merging
   }
 );

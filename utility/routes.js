@@ -11,10 +11,9 @@ module.exports = function(app, passport, User) {
   app.post('/call', function(req, res) {
    phone.callSrcNum(req, res);
   });
-
-  app.post('/xml-response', function(req, res) {
-   phone.callDstNum(req, res);
-  });
+    app.post('/call', function(req, res) {
+        phone.callSrcNum(req, res);
+    });
 
   app.get('/auth/google',
     passport.authenticate('google',{session:true}, 
@@ -48,6 +47,4 @@ module.exports = function(app, passport, User) {
   });
   app.get('/auth/google', passport.authenticate('google',{scope:'https://www.googleapis.com/auth/userinfo.profile'}));
   
-  app.get('/auth/google/callback', passport.authenticate('google', {
-    successRedirect:'/',failureRedirect: '/login'}));
 };
