@@ -14,7 +14,7 @@ module.exports = function(app) {
     phone.callDstNum(req, res);
   });
 
-  app.get('account', function(req,res){
+  app.get('/account', function(req,res){
   	phone.getAccountDetails(req, res);
   });
 };

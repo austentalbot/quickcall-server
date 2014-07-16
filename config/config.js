@@ -1,7 +1,4 @@
-var development = require('./env/development');
-var production = require('./env/production');
-
 module.exports = {
-  development: development,
-  production: production,
+  development: require('./env/development'),
+  production: require('./env/production'),
 }[process.env.NODE_ENV || 'development'];

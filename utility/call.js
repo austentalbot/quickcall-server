@@ -1,12 +1,11 @@
 var plivo = require('plivo');
-var config = require('config');
+var p = plivo.RestAPI(require('config').plivo);
 
 exports.callSrcNum = function(req, res){
 	// ask plivo to call the app user
 	var srcNum = req.body.src;
 	var dstNum = req.body.dst;
 	var base_answerUrl = "http://quickcall-server.herokuapp.com/xml-response";
-	var p = plivo.RestAPI(config.plivo);
 	var params = {};
     // to display the app user's number as a caller ID
     params.from = srcNum;
@@ -29,8 +28,17 @@ exports.callDstNum = function(req, res){
 };
 
 exports.getAccountDetails = function(req, res){
-    var p = plivo.RestAPI(config.plivo);
-    p.get_account(params, function(status, response){
+    // send an empty obj as it's expected
+    p.get_account({}, function(status, response){
       res.send(status, response);
     });
 };
+
+
+// exports.sendSMS = function(req, res){
+//     var params = {};
+// };
+
+// exports.receive = function(req, res){
+//     var params = {};
+// };
