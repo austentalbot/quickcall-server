@@ -10,23 +10,24 @@ module.exports = new GoogleStrategy({
     callbackURL: config.google.callbackURL
   },
   function(accessToken, refreshToken, profile, done) {
-    User.findOne({'username': profile.id}, function(err, oldUser) {
-      if(err){
-        return err;
-      }
-      if (oldUser) {
-        return done(null, oldUser);
-      } else {        
-        var newUser = new User({
-          username: profile.id,
-        });
-        newUser.save(function(err,user) {
-          if (err) {
-            done(err);
-          }
-          return done(null, user.username);
-        });
-      }
-    });
+    done(err, profile);
+    // User.findOne({'username': profile.id}, function(err, oldUser) {
+    //   if(err){
+    //     return err;
+    //   }
+    //   if (oldUser) {
+    //     return done(null, oldUser);
+    //   } else {        
+    //     var newUser = new User({
+    //       username: profile.id,
+    //     });
+    //     newUser.save(function(err,user) {
+    //       if (err) {
+    //         done(err);
+    //       }
+    //       return done(null, user.username);
+    //     });
+    //   }
+    // });
   }
 );
