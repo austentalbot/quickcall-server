@@ -1,3 +1,2 @@
 # Can also ignore all directories and files in a directory.
 node_modules
-config/env/development.js
