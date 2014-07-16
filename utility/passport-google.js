@@ -3,6 +3,7 @@ var User = require('../QCDB/user.js');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var client = config.google.clientID;
 var secret = config.google.clientSecret;
+var callback = config.google.CallbackURL;
 /*setting up googlestrategy via config env.variables note
 OAuth2Strategy at the end of the requirement statement
 this is required in order to use google with OAuth2
@@ -10,7 +11,7 @@ OAuth2 is preferred over OAuth*/
 module.exports = new GoogleStrategy({
   clientID: client,
   clientSecret: secret,
-  callbackURL: "http://localhost:3000/auth/google/callback/",
+  callbackURL: callback,
   scope: [
     'https://www.googleapis.com/auth/userinfo.profile',
     'https://www.googleapis.com/auth/userinfo.email'

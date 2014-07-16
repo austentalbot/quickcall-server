@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var User = require('./QCDB/user.js');
 var Contacts = require('./QCDB/contacts.js');
-
+var config = require('./config/config.js');
 
 var app = express();
 
