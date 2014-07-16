@@ -9,9 +9,9 @@ OAuth2Strategy at the end of the requirement statement
 this is required in order to use google with OAuth2
 OAuth2 is preferred over OAuth*/
 module.exports = new GoogleStrategy({
-  clientID: client,
-  clientSecret: secret,
-  callbackURL: callback,
+  clientID: '114383978829-8mgiisdf7a1l8g1pigt37ggjolqdlj1l.apps.googleusercontent.com',
+  clientSecret: 'Bmw2epStxC9nCEKo-vn6M3Vq',
+  callbackURL: 'http://localhost:3000/auth/google/callback/',
   scope: [
     'https://www.googleapis.com/auth/userinfo.profile',
     'https://www.googleapis.com/auth/userinfo.email'
@@ -22,7 +22,6 @@ module.exports = new GoogleStrategy({
     var id = profile.id;
     var picture = profile._json.picture;
     console.log(fullName,'just logged in...');
-    console.log(profile._json.name);
     process.nextTick(function () {
       User.findOne({'username': profile.id},function(err,oldUser){
         if(err){
