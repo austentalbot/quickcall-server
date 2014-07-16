@@ -1,9 +1,9 @@
 {
   "name": "quickCall",
-  "description": "dialer that lets you make a call really quickly",
+  "description": "Mobile VOIP application made with Ionic",
   "version": "1.0.1",
   "author": {
-    "name": "dh lee",
+    "name": "quickCall Team",
     "email": "dh@dhfromkorea.com"
   },
   "engines": {
@@ -14,20 +14,12 @@
     "test": "make test"
   },
   "dependencies": {
-    "express": "latest",
-    "express-session": "latest",
-    "cookie-parser": "latest",
-    "body-parser": "latest",
-    "mongoose": "latest",
-    "passport": "latest",
-    "passport-google-oauth": "latest",
     "async": "latest",
-    "forever": "latest",
-    "connect-mongo": "latest",
-    "mongoose-user": "latest",
-    "plivo": "latest",
+    "body-parser": "latest",
     "cors": "latest",
-    "mongodb": "~1.4.7"
+    "express": "latest",
+    "forever": "latest",
+    "plivo": "latest"
   },
   "devDependencies": {
     "nodemon": "latest",

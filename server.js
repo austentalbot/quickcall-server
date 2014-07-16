@@ -1,35 +1,16 @@
-
-/**
- * Module dependencies
- */
-var fs = require('fs');
 var express = require('express');
-var passport = require('passport');
-var config = require('config');
-var mongoose = require('mongoose');
+var config = require('./config/config.js');
 
 var app = express();
 
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 3000;            
 
-var connect = function () {
-  var options = { server: { socketOptions: { keepAlive: 1 } } };
-  mongoose.connect(config.db, options);
-};
-connect();
+//require middleware
+require('./config/middleware.js')(app);
 
-mongoose.connection.on('error', console.log);
-mongoose.connection.on('disconnected', connect);
-
-
-// Bootstrap passport config
-require('./utility/passport')(passport, config);
-
-// Bootstrap application settings
-require('./utility/express')(app, passport);
-
-// Bootstrap routes
-require('./utility/routes')(app, passport);
+//add routes
+require('./utility/routes')(app);
 
 app.listen(port);
-console.log('Express app started on port ' + port);
+
+console.log('listening on',port);
