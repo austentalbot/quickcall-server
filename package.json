@@ -23,7 +23,8 @@
     "mongoose": "latest",
     "passport": "latest",
     "passport-google-oauth": "latest",
-    "plivo": "latest"
+    "plivo": "latest",
+    "cookie-session": "latest"
   },
   "devDependencies": {
     "nodemon": "latest",

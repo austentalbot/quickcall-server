@@ -30,19 +30,6 @@ module.exports = function(app, passport, User) {
     res.redirect('/');
   });
 
-app.get('/test',function(req,res){
-  var userQuery = {username: req.user.id};
-  var contact = {user:'myFriend',phonenumber:'dummynumber',image:'some.img'};
-  User.update(userQuery,{$pushAll:{contacts:contact}
-},
-    function(err,res){
-      if(err){
-        console.log(err);
-      }
-      console.log(res);
-  });
-  res.redirect('/');
-});
 
   app.post('/enternumber',function(req,res){
     //get current users token and query it
@@ -50,6 +37,7 @@ app.get('/test',function(req,res){
     //get phonenumber being sent from client and use to set current
     //users phonenumber in db 
     var phoneNumberQuery = {phonenumber:req.body.number};
+    console.log(req.user.id,req.body.number);
     User.update(userQuery,phoneNumberQuery,null,function(err,userInfo){
       if(err){
         return err;
