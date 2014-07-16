@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-var userPlugin = require('mongoose-user');
 var contact = require('./contacts.js');
 var Schema = mongoose.Schema;
 
