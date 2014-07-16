@@ -1,6 +1,5 @@
 var mongoose = require('mongoose');
 var phone = require('./call');
-var config = require('config');
 var User = require('../QCDB/user.js');
 
 
