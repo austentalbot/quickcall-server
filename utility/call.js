@@ -1,6 +1,7 @@
 var plivo = require('plivo');
+var config = require('config');
 
-exports.triggerCall = function(req, res){
+exports.callSrcNum = function(req, res){
 	// ask plivo to call the app user
 	var srcNum = req.body.src;
 	var dstNum = req.body.dst;
@@ -15,7 +16,7 @@ exports.triggerCall = function(req, res){
     });
 };
 
-exports.connectCall = function(req, res){
+exports.callDstNum = function(req, res){
 	// provide xml instruction to plivo
 	// ask plivo to call the person the app user wants to talk to
     var dstNum = req.body.dst;
