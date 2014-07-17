@@ -1,36 +1,44 @@
 var plivo = require('plivo');
-var p = plivo.RestAPI(require('config').plivo);
+// fall back to DH's crendential
+// this info should be deleted after the authid/token feature is implemented on the client side
+var config = require('config').plivo;
 
-exports.callSrcNum = function(req, res){
-	// ask plivo to call the app user
-	var srcNum = req.body.src;
-	var dstNum = req.body.dst;
-	var base_answerUrl = "http://quickcall-server.herokuapp.com/xml-response";
-	var params = {};
-    // to display the app user's number as a caller ID
-    params.from = srcNum;
-    params.to = srcNum;
-    params.answer_url = base_answerUrl + "?dst=" + dstNum;
+exports.callSrcNum = function(req, res) {
+    // ask plivo to call the app user
+    var params = {
+        from: req.body.src,
+        to: req.body.src,
+        answer_url: "http://quickcall-server.herokuapp.com/xml-response?dst=" + req.body.dst
+    };
+    // default fallback to DH's API credentials (temporary)
+    var credentials = {
+        authId: req.body.authId || config.authId,
+        authToken: req.body.authToken || config.authToken
+    };
+    var p = plivo.RestAPI(credentials);
     p.make_call(params, function(status, response) {
-    	res.send(status, response);
+        res.send(status, response);
     });
 };
 
-exports.callDstNum = function(req, res){
-	// provide xml instruction to plivo
-	// ask plivo to call the person the app user wants to talk to
-    var dstNum = req.body.dst;
+exports.callDstNum = function(req, res) {
+    // provide an xml instruction which tells plivo what to do after a call gets connected
+    // ask plivo to call the person the app user wants to talk to
     var r = new plivo.Response();
     var dialElement = r.addDial();
-    dialElement.addNumber(dstNum);
-    var xmlRes = r.toXML();
-    res.send(200, xmlRes);	
+    dialElement.addNumber(req.body.dst);
+    res.send(200, r.toXML());
 };
 
-exports.getAccountDetails = function(req, res){
+exports.getAccountDetails = function(req, res) {
+    var credentials = {
+        authId: req.body.authId || config.authId,
+        authToken: req.body.authToken || config.authToken
+    };
+    var p = plivo.RestAPI(credentials);
     // send an empty obj as it's expected
-    p.get_account({}, function(status, response){
-      res.send(status, response);
+    p.get_account({}, function(status, response) {
+        res.send(status, response);
     });
 };
 
