@@ -3,10 +3,9 @@ var phone = require('./call');
 
 module.exports = function(app) {
   var cors = require('cors');
-var bodyParser = require('body-parser');
+  var bodyParser = require('body-parser');
 
   app.use(cors());
-  app.use(bodyParser());
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());
 
@@ -15,7 +14,7 @@ var bodyParser = require('body-parser');
   });  
 
   app.post('/call', function(req, res) {
-  console.log(req.body, 'call');
+   console.log(req.body, 'call');
    phone.callSrcNum(req, res);
   });
 
@@ -24,7 +23,6 @@ var bodyParser = require('body-parser');
   });
 
   app.get('/account', function(req,res){
-    console.log(req.body);
   	phone.getAccountDetails(req, res);
   });
 };

@@ -31,9 +31,10 @@ exports.callDstNum = function(req, res) {
 };
 
 exports.getAccountDetails = function(req, res) {
+    // should use req.query, not req.body to parse the query string input from a GET request
     var credentials = {
-        authId: req.body.authId || config.authId,
-        authToken: req.body.authToken || config.authToken
+        authId: req.query.authId || config.authId,
+        authToken: req.query.authToken || config.authToken
     };
     var p = plivo.RestAPI(credentials);
     // send an empty obj as it's expected
