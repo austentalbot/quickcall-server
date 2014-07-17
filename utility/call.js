@@ -1,7 +1,4 @@
 var plivo = require('plivo');
-// fall back to DH's crendential
-// this info should be deleted after the authid/token feature is implemented on the client side
-var config = require('config').plivo;
 
 exports.callSrcNum = function(req, res) {
     // ask plivo to call the app user
@@ -12,8 +9,8 @@ exports.callSrcNum = function(req, res) {
     };
     // default fallback to DH's API credentials (temporary)
     var credentials = {
-        authId: req.body.authId || config.authId,
-        authToken: req.body.authToken || config.authToken
+        authId: req.body.authId || req.query.authId,
+        authToken: req.body.authToken || req.query.authToken
     };
     var p = plivo.RestAPI(credentials);
     p.make_call(params, function(status, response) {
@@ -33,8 +30,8 @@ exports.callDstNum = function(req, res) {
 exports.getAccountDetails = function(req, res) {
     // should use req.query, not req.body to parse the query string input from a GET request
     var credentials = {
-        authId: req.query.authId || config.authId,
-        authToken: req.query.authToken || config.authToken
+        authId: req.body.authId || req.query.authId,
+        authToken: req.body.authToken || req.query.authToken
     };
     var p = plivo.RestAPI(credentials);
     // send an empty obj as it's expected
