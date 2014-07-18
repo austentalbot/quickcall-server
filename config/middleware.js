@@ -1,3 +1,5 @@
+// you know what's happening here.
+// cors middleware is needed to enable the cross-origin requests
 var cors = require('cors');
 var bodyParser = require('body-parser');
 

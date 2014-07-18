@@ -1,14 +1,12 @@
 var express = require('express');
-var config = require('./config/config.js');
 var app = express();
-var port = process.env.PORT || 3000;            
+var port = process.env.PORT || 3000;
 
-//require middleware
+// express server config
 require('./config/middleware.js')(app);
 
-//add routes
+// route hanlder
 require('./utility/routes')(app);
 
 app.listen(port);
-
 console.log('listening on',port);
