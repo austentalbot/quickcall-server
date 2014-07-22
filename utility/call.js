@@ -50,10 +50,21 @@ exports.getAccountDetails = function(req, res) {
 };
 
 
-// future roadmap if you were to add an SMS functionality
-// exports.sendSMS = function(req, res){
-//     var params = {};
-// };
+// send SMS 
+exports.sendSMS = function(req, res){
+    var params = {
+        src: req.body.src,
+        dst: req.body.dst,
+        text: req.body.text,
+        type: 'sms'
+    };
+
+    var p = initializePlivo(req);
+    p.send_message(params, function (status, response) {
+        console.log('Status: ', status);
+        console.log('API Response:\n', response);
+    });
+};
 
 // exports.receive = function(req, res){
 //     var params = {};
