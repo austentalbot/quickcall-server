@@ -41,6 +41,7 @@ exports.callDstNum = function(req, res) {
 };
 
 exports.forwardSMS = function(req, res) {
+    console.log('forwarding sms');
     var dst = req.param('ForwardTo') || '';
     var from = req.param('From') || '';
 
@@ -55,7 +56,12 @@ exports.forwardSMS = function(req, res) {
         console.log('generating response');
         var params = {'src':src,'dst':dst};
         r.addMessage('Message from ' + from + ': ' + txt, params);
-        console.log(r);
+        console.log('r', r);
+    } else {
+        console.log('not generating response');
+        console.log('dst:', dst);
+        console.log('src:', src);
+        console.log('txt:', txt);
     }
 
     res.set({
