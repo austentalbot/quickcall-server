@@ -17,6 +17,11 @@ module.exports = function(app) {
     phone.sendSMS(req, res);
   });
 
+  app.post('/forwardSMS', function(req, res) {
+    console.log(req.body, 'forwarding sms');
+    phone.forwardSMS(req, res);
+  });
+
   app.post('/xml-response', function(req, res) {
     phone.callDstNum(req, res);
   });

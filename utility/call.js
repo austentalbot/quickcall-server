@@ -40,6 +40,31 @@ exports.callDstNum = function(req, res) {
     res.send(200, r.toXML());
 };
 
+exports.forwardSMS = function(req, res) {
+    var dst = req.param('ForwardTo') || '';
+    var from = req.param('From') || '';
+
+    // Custom CLID is not allowed, so use Plivo DID instead.
+    var src = req.param('To') || '';
+    var txt = req.param('Text') || '';
+    var r = plivo.Response();
+
+    // Generate an XML response with <Message> tag, only if,
+    // all the mandatory attributes are available.
+    if (dst && src && txt) {
+        console.log('generating response');
+        var params = {'src':src,'dst':dst};
+        r.addMessage('Message from ' + from + ': ' + txt, params);
+        console.log(r);
+    }
+
+    res.set({
+        'Content-Type': 'text/xml'
+    });
+    // res.end(r.toXML());
+    res.send(200, r.toXML());
+};
+
 // this is needed to fetch our user account details from Plivo
 // check https://www.plivo.com/docs/api/account/
 // this now also pulls the account's phone number for sending texts
@@ -58,7 +83,7 @@ exports.getAccountDetails = function(req, res) {
     });
 
     //set up endpoints for receiving calls and texts
-    enpointParams = {
+    endpointParams = {
         answer_url: 'http://quickcall-server-plus.herokuapp.com/incomingCall',
         app_name: 'quickcall',
         message_url: 'http://quickcall-server-plus.herokuapp.com/incomingSms'
@@ -88,6 +113,6 @@ exports.sendSMS = function(req, res){
     });
 };
 
-// exports.receive = function(req, res){
+// exports.receiveSMS = function(req, res){
 //     var params = {};
 // };
