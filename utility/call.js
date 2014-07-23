@@ -62,6 +62,7 @@ exports.forwardSMS = function(req, res) {
         console.log('dst:', dst);
         console.log('src:', src);
         console.log('txt:', txt);
+        console.log('request:', req);
     }
 
     res.set({
