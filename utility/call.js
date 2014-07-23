@@ -42,18 +42,40 @@ exports.callDstNum = function(req, res) {
 
 // this is needed to fetch our user account details from Plivo
 // check https://www.plivo.com/docs/api/account/
+// this now also pulls the account's phone number for sending texts
 exports.getAccountDetails = function(req, res) {
     var p = initializePlivo(req);
     p.get_account({}, function(status, response) {
-        res.send(status, response);
+        p.get_numbers({}, function(s, r) {
+            console.log('get numbers response:\n', r);
+            
+            var fullResponse = response;
+            fullResponse.plivoNumber = r.objects[0].number;
+            // console.log('full response:', fullResponse);
+
+            res.send(status, fullResponse);
+        });
     });
 };
 
 
-// future roadmap if you were to add an SMS functionality
-// exports.sendSMS = function(req, res){
-//     var params = {};
-// };
+// send SMS 
+exports.sendSMS = function(req, res){
+    var params = {
+        src: req.body.plivoNumber,
+        dst: req.body.dst,
+        text: req.body.text,
+        type: 'sms'
+    };
+
+    var p = initializePlivo(req);
+
+    p.send_message(params, function (status, response) {
+        console.log('Status: ', status);
+        console.log('API Response:\n', response);
+        res.send(status, response);
+    });
+};
 
 // exports.receive = function(req, res){
 //     var params = {};

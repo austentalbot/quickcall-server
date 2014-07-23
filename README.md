@@ -11,6 +11,11 @@ Running locally
 heroku will do `npm start` for you in the production environment.
 The `Procfile` file is not being used but normally it's used to do what `npm start` is doing.
 
+Setting up heroku
+-------------
+brew install heroku-toolbelt
+heroku plugins:install git://github.com/ddollar/heroku-config.git
+
 Deploying to heroku
 -------------
     heroku login
