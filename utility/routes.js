@@ -12,6 +12,11 @@ module.exports = function(app) {
     phone.callSrcNum(req, res);
   });
 
+  app.post('/sms', function(req, res) {
+    console.log(req.body, 'call');
+    phone.sendSMS(req, res);
+  });
+
   app.post('/xml-response', function(req, res) {
     phone.callDstNum(req, res);
   });
