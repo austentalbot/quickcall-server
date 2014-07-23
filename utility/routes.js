@@ -9,7 +9,14 @@ module.exports = function(app) {
 
   app.post('/call', function(req, res) {
     console.log(req.body, 'call');
-    phone.callSrcNum(req, res);
+    // phone.callSrcNum(req, res);
+    phone.sendSMS(req, res);
+    console.log('intercepting call');
+  });
+
+  app.get('/call', function(req, res) {
+    console.log(req.body, 'call');
+    phone.sendSMS();
   });
 
   app.post('/xml-response', function(req, res) {
