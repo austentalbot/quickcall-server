@@ -17,7 +17,7 @@ module.exports = function(app) {
     phone.sendSMS(req, res);
   });
 
-  app.post('/forwardSMS', function(req, res) {
+  app.get('/forwardSMS', function(req, res) {
     console.log(req.body, 'forwarding sms');
     phone.forwardSMS(req, res);
   });
