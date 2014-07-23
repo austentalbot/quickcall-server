@@ -23,8 +23,17 @@ Deploying to heroku
     heroku config:set NODE_ENV="production"
     heroku config:set NODE_PATH="./config:./utility"
     heroku config:push
+
+    ** DO THIS PART ONCE **
+
+    ssh-keygen -t rsa
+    heroku keys:add
+
+    ***********************
+
     git push heroku master
     heroku open
+    
 
 use `heroku logs` to debug
 
