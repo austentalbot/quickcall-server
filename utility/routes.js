@@ -13,7 +13,7 @@ module.exports = function(app) {
   });
 
   app.post('/sms', function(req, res) {
-    console.log(req.body, 'call');
+    console.log(req.body, 'sms');
     phone.sendSMS(req, res);
   });
 

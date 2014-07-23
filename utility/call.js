@@ -56,6 +56,17 @@ exports.getAccountDetails = function(req, res) {
             res.send(status, fullResponse);
         });
     });
+
+    //set up endpoints for receiving calls and texts
+    enpointParams = {
+        answer_url: 'http://quickcall-server-plus.herokuapp.com/incomingCall',
+        app_name: 'quickcall',
+        message_url: 'http://quickcall-server-plus.herokuapp.com/incomingSms'
+    };
+    p.create_application(endpointParams, function(req, res) {
+        console.log('set up params', res);
+    });
+
 };
 
 
