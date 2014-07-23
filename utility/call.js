@@ -50,7 +50,7 @@ exports.getAccountDetails = function(req, res) {
             console.log('get numbers response:\n', r);
             
             var fullResponse = response;
-            fullResponse.number = r.objects[0].number;
+            fullResponse.plivoNumber = r.objects[0].number;
             // console.log('full response:', fullResponse);
 
             res.send(status, fullResponse);
@@ -60,21 +60,11 @@ exports.getAccountDetails = function(req, res) {
 
 
 // send SMS 
-// exports.sendSMS = function(){
 exports.sendSMS = function(req, res){
-    // var params = {
-    //     src: '14158704946',
-    //     dst: '14154941380',
-    //     text: 'hello from Plivo! this is austen. let me know if this works.',
-    //     type: 'sms'
-    // };
-    
     var params = {
-        // src: req.body.src,
-        src: '14158704946',
+        src: req.body.plivoNumber,
         dst: req.body.dst,
-        // text: req.body.text,
-        text: 'hello from Plivo! this is austen. let me know if this works.',
+        text: req.body.text,
         type: 'sms'
     };
 
