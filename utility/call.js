@@ -41,9 +41,10 @@ exports.callDstNum = function(req, res) {
 };
 
 exports.forwardSMS = function(req, res) {
+    //need to pull destination number from database
     console.log('forwarding sms');
     var dst = req.param('ForwardTo') || '';
-    var from = req.param('From') || '';
+    var from = req.param('From') ||  '';
 
     // Custom CLID is not allowed, so use Plivo DID instead.
     var src = req.param('To') || '';
@@ -62,7 +63,7 @@ exports.forwardSMS = function(req, res) {
         console.log('dst:', dst);
         console.log('src:', src);
         console.log('txt:', txt);
-        console.log('request query:', req.query);
+        console.log('request body:', req.body);
     }
 
     res.set({
