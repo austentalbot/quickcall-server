@@ -17,6 +17,7 @@
     "body-parser": "latest",
     "cors": "latest",
     "express": "latest",
+    "finalhandler": "^0.1.0",
     "forever": "latest",
     "plivo": "latest"
   },
