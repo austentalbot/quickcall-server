@@ -73,6 +73,65 @@ exports.forwardSMS = function(req, res) {
     res.send(200, r.toXML());
 };
 
+// this function is not yet hooked up, but it is ready to go once the DB and front-end are ready
+// we also need to upgrade the account to allow for multiple numbers
+exports.createNewUser = function(req, res) {
+    // var p = plivo.RestAPI({authId: INSERTAUTHID, authToken: INSERTAUTHTOKEN});
+    var p = initializePlivo(req);
+    // var params = {
+    //     name: 'test',
+    //     enabled: true
+    // };
+    var params = {
+        name: request.body.user,
+        enabled: true
+    }
+    p.create_subaccount(params, function(status, response) {
+        console.log('creating new subuser');
+
+        //save api_id, auth_id, auth_token
+        console.log(response);
+
+        //check that message was created and account created without error
+        if (response.message==='created') {
+            //save details
+            console.log(response.api_id, response.auth_id, response.auth_token);
+
+            //query available phone numbers
+            // var numParams = {
+            //     country_iso: 'US',
+            //     services: 'voice,sms'
+            // };
+            var numParams = {
+                country_iso: request.body.country,
+                services: 'voice,sms'
+            };
+            p.get_number_group(numParams, function(stat, resp) {
+                //this returns a list of 20 numbers we can use
+                console.log('numbers:', resp);
+
+                //we want to rent one of these; we'll just go with the first
+                var numId=resp.objects[0].group_id;
+                console.log('id:', numId);
+                var purchaseParams={
+                    group_id: numId,
+                    quantity: 1
+                };
+                p.rent_from_number_group(purchaseParams, function(s, r) {
+                    //save number to database to be associated with user
+                    console.log('response:', r);
+                    console.log('signed up for Plivo with account and number');
+
+                    res.send(s, r);
+                });
+            });
+        } else {
+            console.log('There was an error saving the account. Plivo response message:', response.message);
+            res.send(status, response);
+        }
+    });
+};
+
 // this is needed to fetch our user account details from Plivo
 // check https://www.plivo.com/docs/api/account/
 // this now also pulls the account's phone number for sending texts
