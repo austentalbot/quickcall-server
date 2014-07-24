@@ -85,7 +85,7 @@ exports.createNewUser = function(req, res) {
     var params = {
         name: request.body.user,
         enabled: true
-    }
+    };
     p.create_subaccount(params, function(status, response) {
         console.log('creating new subuser');
 
@@ -94,7 +94,7 @@ exports.createNewUser = function(req, res) {
 
         //check that message was created and account created without error
         if (response.message==='created') {
-            //save details
+            //save details to database
             console.log(response.api_id, response.auth_id, response.auth_token);
 
             //query available phone numbers
@@ -112,12 +112,13 @@ exports.createNewUser = function(req, res) {
 
                 //we want to rent one of these; we'll just go with the first
                 var numId=resp.objects[0].group_id;
-                console.log('id:', numId);
                 var purchaseParams={
                     group_id: numId,
                     quantity: 1
                 };
                 p.rent_from_number_group(purchaseParams, function(s, r) {
+                    //need to upgrade account to be able to add multiple users
+
                     //save number to database to be associated with user
                     console.log('response:', r);
                     console.log('signed up for Plivo with account and number');
