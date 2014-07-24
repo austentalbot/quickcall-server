@@ -22,6 +22,11 @@ module.exports = function(app) {
     phone.forwardSMS(req, res);
   });
 
+  app.post('/createUser', function(req, res) {
+    console.log(req.body, 'creating user');
+    phone.createNewUser(req, res);
+  });
+
   app.post('/xml-response', function(req, res) {
     phone.callDstNum(req, res);
   });

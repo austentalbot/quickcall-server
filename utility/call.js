@@ -1,6 +1,6 @@
 // to connect voice calls, we are relying on the Plivo API and its Nodejs library
 // for more details: https://github.com/plivo/plivo-examples-node
-
+var credentials = require('../credentials.js').process.env;
 var plivo = require('plivo');
 
 // this is required to make requests to plivo
@@ -23,7 +23,7 @@ exports.callSrcNum = function(req, res) {
     var params = {
         from: req.body.src,
         to: req.body.src,
-        answer_url: "http://quickcall-server-plus.herokuapp.com/xml-response?dst=" + req.body.dst
+        answer_url: "https://quickcall-server.azurewebsites.net/xml-response?dst=" + req.body.dst
     };
     var p = initializePlivo(req);
     p.make_call(params, function(status, response) {
@@ -76,14 +76,14 @@ exports.forwardSMS = function(req, res) {
 // this function is not yet hooked up, but it is ready to go once the DB and front-end are ready
 // we also need to upgrade the account to allow for multiple numbers
 exports.createNewUser = function(req, res) {
-    // var p = plivo.RestAPI({authId: INSERTAUTHID, authToken: INSERTAUTHTOKEN});
-    var p = initializePlivo(req);
+    var p = plivo.RestAPI({authId: credentials.masterAuthId, authToken: credentials.masterAuthToken});
+    // var p = initializePlivo(req);
     // var params = {
     //     name: 'test',
     //     enabled: true
     // };
     var params = {
-        name: request.body.user,
+        name: req.body.id,
         enabled: true
     };
     p.create_subaccount(params, function(status, response) {
@@ -94,18 +94,26 @@ exports.createNewUser = function(req, res) {
 
         //check that message was created and account created without error
         if (response.message==='created') {
-            //save details to database
+            //create object to save params to be sent back to the database and saved
+            var acctDetails = {
+                api_id: response.api_id,
+                auth_id: response.auth_id,
+                auth_token: response.auth_token
+            };
+
             console.log(response.api_id, response.auth_id, response.auth_token);
 
             //query available phone numbers
-            // var numParams = {
-            //     country_iso: 'US',
-            //     services: 'voice,sms'
-            // };
             var numParams = {
-                country_iso: request.body.country,
+                country_iso: 'US',
                 services: 'voice,sms'
             };
+
+            // to be implemented eventually when we save numbers for non-US countries
+            // var numParams = {
+            //     country_iso: request.body.country,
+            //     services: 'voice,sms'
+            // };
             p.get_number_group(numParams, function(stat, resp) {
                 //this returns a list of 20 numbers we can use
                 console.log('numbers:', resp);
@@ -123,7 +131,10 @@ exports.createNewUser = function(req, res) {
                     console.log('response:', r);
                     console.log('signed up for Plivo with account and number');
 
-                    res.send(s, r);
+                    // implement this once we know what the number response looks like
+                    acctDetails.plivo_phone = r.numbers[0].number;
+
+                    res.send(s, acctDetails);
                 });
             });
         } else {
@@ -152,9 +163,9 @@ exports.getAccountDetails = function(req, res) {
 
     //set up endpoints for receiving calls and texts
     endpointParams = {
-        answer_url: 'http://quickcall-server-plus.herokuapp.com/incomingCall',
+        answer_url: 'https://quickcall-server.azurewebsites.net/incomingCall',
         app_name: 'quickcall',
-        message_url: 'http://quickcall-server-plus.herokuapp.com/incomingSms'
+        message_url: 'https://quickcall-server.azurewebsites.net/incomingSms'
     };
     p.create_application(endpointParams, function(req, res) {
         console.log('set up params', res);
