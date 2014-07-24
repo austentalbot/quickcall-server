@@ -83,7 +83,7 @@ exports.createNewUser = function(req, res) {
     //     enabled: true
     // };
     var params = {
-        name: request.body.user,
+        name: request.body.id,
         enabled: true
     };
     p.create_subaccount(params, function(status, response) {
@@ -94,18 +94,26 @@ exports.createNewUser = function(req, res) {
 
         //check that message was created and account created without error
         if (response.message==='created') {
-            //save details to database
+            //create object to save params to be sent back to the database and saved
+            var saveObj = {
+                api_id: response.api_id,
+                auth_id: response.auth_id,
+                auth_token: response.auth_token
+            };
+
             console.log(response.api_id, response.auth_id, response.auth_token);
 
             //query available phone numbers
-            // var numParams = {
-            //     country_iso: 'US',
-            //     services: 'voice,sms'
-            // };
-            var numParams = {
-                country_iso: request.body.country,
+            var acctDetails = {
+                country_iso: 'US',
                 services: 'voice,sms'
             };
+
+            // to be implemented eventually when we save numbers for non-US countries
+            // var numParams = {
+            //     country_iso: request.body.country,
+            //     services: 'voice,sms'
+            // };
             p.get_number_group(numParams, function(stat, resp) {
                 //this returns a list of 20 numbers we can use
                 console.log('numbers:', resp);
@@ -123,7 +131,10 @@ exports.createNewUser = function(req, res) {
                     console.log('response:', r);
                     console.log('signed up for Plivo with account and number');
 
-                    res.send(s, r);
+                    // implement this once we know what the number response looks like
+                    // acctDetails.phoneNumber: r.number;
+
+                    res.send(s, acctDetails);
                 });
             });
         } else {
