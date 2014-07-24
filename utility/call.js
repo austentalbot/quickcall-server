@@ -76,8 +76,8 @@ exports.forwardSMS = function(req, res) {
 // this function is not yet hooked up, but it is ready to go once the DB and front-end are ready
 // we also need to upgrade the account to allow for multiple numbers
 exports.createNewUser = function(req, res) {
-    // var p = plivo.RestAPI({authId: INSERTAUTHID, authToken: INSERTAUTHTOKEN});
-    var p = initializePlivo(req);
+    var p = plivo.RestAPI({authId: credentials.masterAuthId, authToken: credentials.masterAuthToken});
+    // var p = initializePlivo(req);
     // var params = {
     //     name: 'test',
     //     enabled: true
