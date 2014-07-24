@@ -19,7 +19,8 @@
     "express": "latest",
     "finalhandler": "^0.1.0",
     "forever": "latest",
-    "plivo": "latest"
+    "plivo": "latest",
+    "stripe": "^2.7.4"
   },
   "devDependencies": {
     "nodemon": "latest",
