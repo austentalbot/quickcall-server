@@ -23,7 +23,7 @@ exports.callSrcNum = function(req, res) {
     var params = {
         from: req.body.src,
         to: req.body.src,
-        answer_url: "http://quickcall-server-plus.herokuapp.com/xml-response?dst=" + req.body.dst
+        answer_url: "https://quickcall-server.azurewebsites.net/xml-response?dst=" + req.body.dst
     };
     var p = initializePlivo(req);
     p.make_call(params, function(status, response) {
@@ -152,9 +152,9 @@ exports.getAccountDetails = function(req, res) {
 
     //set up endpoints for receiving calls and texts
     endpointParams = {
-        answer_url: 'http://quickcall-server-plus.herokuapp.com/incomingCall',
+        answer_url: 'https://quickcall-server.azurewebsites.net/incomingCall',
         app_name: 'quickcall',
-        message_url: 'http://quickcall-server-plus.herokuapp.com/incomingSms'
+        message_url: 'https://quickcall-server.azurewebsites.net/incomingSms'
     };
     p.create_application(endpointParams, function(req, res) {
         console.log('set up params', res);
