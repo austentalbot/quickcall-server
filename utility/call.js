@@ -1,6 +1,6 @@
 // to connect voice calls, we are relying on the Plivo API and its Nodejs library
 // for more details: https://github.com/plivo/plivo-examples-node
-
+var credentials = require('../credentials.js').process.env;
 var plivo = require('plivo');
 
 // this is required to make requests to plivo
@@ -83,7 +83,7 @@ exports.createNewUser = function(req, res) {
     //     enabled: true
     // };
     var params = {
-        name: request.body.id,
+        name: req.body.id,
         enabled: true
     };
     p.create_subaccount(params, function(status, response) {
@@ -95,7 +95,7 @@ exports.createNewUser = function(req, res) {
         //check that message was created and account created without error
         if (response.message==='created') {
             //create object to save params to be sent back to the database and saved
-            var saveObj = {
+            var acctDetails = {
                 api_id: response.api_id,
                 auth_id: response.auth_id,
                 auth_token: response.auth_token
@@ -104,7 +104,7 @@ exports.createNewUser = function(req, res) {
             console.log(response.api_id, response.auth_id, response.auth_token);
 
             //query available phone numbers
-            var acctDetails = {
+            var numParams = {
                 country_iso: 'US',
                 services: 'voice,sms'
             };
@@ -132,7 +132,7 @@ exports.createNewUser = function(req, res) {
                     console.log('signed up for Plivo with account and number');
 
                     // implement this once we know what the number response looks like
-                    // acctDetails.phoneNumber: r.number;
+                    acctDetails.plivo_phone = r.numbers[0].number;
 
                     res.send(s, acctDetails);
                 });

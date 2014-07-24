@@ -1,6 +1,5 @@
 var express = require('express');
 var stripe = require('stripe');
-var credentials = require('./credentials.js').process.env;
 var app = express();
 var port = process.env.PORT || 3000;
 
