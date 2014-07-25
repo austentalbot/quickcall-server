@@ -1,7 +1,17 @@
 // to connect voice calls, we are relying on the Plivo API and its Nodejs library
 // for more details: https://github.com/plivo/plivo-examples-node
-var credentials = require('../credentials.js').process.env;
 var plivo = require('plivo');
+
+// dependencies, either locally or from env on azure
+if (process.env.PORT===undefined) {
+    var credentials = require('../credentials.js').process.env;
+} else {
+  var credentials = {
+    masterAuthId: process.env['masterAuthId'],
+    masterAuthToken: process.env['masterAuthToken']      
+  };
+}
+
 
 // this is required to make requests to plivo
 // the auth pair is tied to the user's account and remaining $ credit
