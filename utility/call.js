@@ -42,11 +42,15 @@ exports.processPayment = function(req, res) {
 // the auth pair is tied to the user's account and remaining $ credit
 // so plivo will handle the payment instead of us
 var initializePlivo = function(req) {
-    var credentials = {
-        authId: req.body.authId || req.query.authId,
-        authToken: req.body.authToken || req.query.authToken
-    };
-    return plivo.RestAPI(credentials);
+    // var user = {
+    //     authId: req.body.authId || req.query.authId,
+    //     authToken: req.body.authToken || req.query.authToken
+    // };
+    var user = {
+        authId: req.body.auth_id || req.query.auth_id,
+        authToken: req.body.auth_token || req.query.auth_token
+    };    
+    return plivo.RestAPI(user);
 };
 
 // calling the app user's number (src)
@@ -126,9 +130,6 @@ exports.createNewUser = function(req, res) {
     };
     p.create_subaccount(params, function(status, response) {
         console.log('creating new subuser');
-
-        //save api_id, auth_id, auth_token
-        console.log(response);
 
         //check that message was created and account created without error
         if (response.message==='created') {
@@ -214,8 +215,12 @@ exports.getAccountDetails = function(req, res) {
 
 // send SMS 
 exports.sendSMS = function(req, res){
+
+    console.log('sms body');
+    console.log(req.body);
+
     var params = {
-        src: req.body.plivoNumber,
+        src: req.body.plivo_phone,
         dst: req.body.dst,
         text: req.body.text,
         type: 'sms'
