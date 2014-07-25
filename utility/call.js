@@ -60,8 +60,8 @@ var initializePlivo = function(req) {
 // check https://www.plivo.com/docs/api/call/
 exports.callSrcNum = function(req, res) {
     var params = {
-        from: req.body.src,
-        to: req.body.src,
+        from: req.body.phoneNumber,
+        to: req.body.phoneNumber,
         answer_url: "https://quickcall-server.azurewebsites.net/xml-response?dst=" + req.body.dst
     };
     var p = initializePlivo(req);
