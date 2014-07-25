@@ -62,7 +62,11 @@ exports.callSrcNum = function(req, res) {
     var params = {
         from: req.body.phoneNumber,
         to: req.body.phoneNumber,
+<<<<<<< HEAD
         answer_url: "https://quickcall-server.azurewebsites.net/xml-response?dst=" + req.body.destination_number
+=======
+        answer_url: "https://quickcall-server.azurewebsites.net/xml-response?dst=" + req.body.dst
+>>>>>>> 5b8365afab1fa6aafb23a84edd4ea4ae728a5640
     };
     var p = initializePlivo(req);
     p.make_call(params, function(status, response) {
