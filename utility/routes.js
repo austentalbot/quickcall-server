@@ -34,4 +34,9 @@ module.exports = function(app) {
   app.get('/account', function(req, res) {
     phone.getAccountDetails(req, res);
   });
+
+  app.post('/pay', function(req, res) {
+    phone.processPayment(req, res);
+    console.log('processingPayment');
+  });
 };

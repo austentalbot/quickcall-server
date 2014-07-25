@@ -8,9 +8,34 @@ if (process.env.PORT===undefined) {
 } else {
   var credentials = {
     masterAuthId: process.env['masterAuthId'],
-    masterAuthToken: process.env['masterAuthToken']      
+    masterAuthToken: process.env['masterAuthToken'],      
+    stripeTestSecretKey: process.env['stripeTestSecretKey']      
   };
 }
+
+var stripe = require('stripe')(credentials.stripeTestSecretKey);
+
+exports.processPayment = function(req, res) {
+    console.log(req.body);
+
+    var stripeToken = req.body.stripeToken;
+
+    var charge = stripe.charges.create({
+      amount: 1000, // amount in cents, again
+      currency: "usd",
+      card: stripeToken,
+      description: "payinguser@example.com"
+    }, function(err, charge) {
+      if (err && err.type === 'StripeCardError') {
+        console.log('stripe card error', err)
+      } else if (err) {
+        console.log('error', err);
+      }
+      console.log('charge', charge);
+      res.send(200);
+    });
+
+};
 
 
 // this is required to make requests to plivo

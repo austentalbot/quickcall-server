@@ -1,5 +1,4 @@
 var express = require('express');
-var stripe = require('stripe');
 var app = express();
 var port = process.env.PORT || 3000;
 
