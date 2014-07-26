@@ -20,7 +20,9 @@
     "finalhandler": "^0.1.0",
     "forever": "latest",
     "plivo": "latest",
-    "stripe": "^2.7.4"
+    "stripe": "^2.7.4",
+    "firebase": "^1.0.18",
+    "q": "^1.0.1"
   },
   "devDependencies": {
     "nodemon": "latest",
