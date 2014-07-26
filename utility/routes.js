@@ -20,7 +20,7 @@ module.exports = function(app) {
 
   app.post('/incomingSms', function(req, res) {
     console.log(req.body, 'forwarding sms');
-    user.getUserData(req.body.To, res);
+    user.getUserData(req, res, user.forwardSMS);
   });
 
   app.post('/createUser', function(req, res) {
