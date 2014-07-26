@@ -1,4 +1,5 @@
 var phone = require('./call');
+var user = require('./user');
 
 module.exports = function(app) {
   // technically we don't need / route
@@ -17,9 +18,9 @@ module.exports = function(app) {
     phone.sendSMS(req, res);
   });
 
-  app.post('/forwardSMS', function(req, res) {
+  app.post('/incomingSms', function(req, res) {
     console.log(req.body, 'forwarding sms');
-    phone.forwardSMS(req, res);
+    user.getUserData(req, res);
   });
 
   app.post('/createUser', function(req, res) {

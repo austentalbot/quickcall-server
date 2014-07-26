@@ -22,6 +22,6 @@ user.getUserData = function(plivo_phone, callback) {
       }
     }
   });
-}); 
+}; 
 
 module.exports = user; 

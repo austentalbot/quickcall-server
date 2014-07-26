@@ -18,11 +18,11 @@
     "cors": "latest",
     "express": "latest",
     "finalhandler": "^0.1.0",
+    "firebase": "^1.0.18",
     "forever": "latest",
     "plivo": "latest",
-    "stripe": "^2.7.4",
-    "firebase": "^1.0.18",
-    "q": "^1.0.1"
+    "q": "^1.0.1",
+    "stripe": "^2.7.4"
   },
   "devDependencies": {
     "nodemon": "latest",
