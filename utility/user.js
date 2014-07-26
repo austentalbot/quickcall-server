@@ -4,9 +4,16 @@ var rootRef =  new Firebase('https://quickcallhr.firebaseio.com');
 var user = {};
 
 user.getUserData = function(plivo_phone, callback) {
+
+
+
   // <<- query database for userId
   //     this requires a nested for in loop 
   rootRef.on('value', function(rootSnapshot) {
+
+    console.log('snapshot of db');
+    console.log(rootSnapshot);
+
     var rootPayload = rootSnapshot.val();
     for (var data in rootPayload) {
       if (rootPayload.hasOwnProperty(data)) {
@@ -14,7 +21,9 @@ user.getUserData = function(plivo_phone, callback) {
         for (var key in user) {
           var userData = user[key]; 
           if (userData.plivo_phone === plivo_phone) {
-            callback(userData); 
+            console.log('user data');
+            console.log(userData);
+            // callback(userData); 
           } 
         }
       } else {
